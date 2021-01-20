@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {DataNetService} from '../../services/data-net.service'
+import {Router} from '@angular/router'
+
+
 
 @Component({
   selector: 'app-invitacion',
@@ -7,7 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvitacionComponent implements OnInit {
 
-  constructor() { }
+  codigoConferency:any = ""
+  codigoPersonal:any = ""
+  
+  constructor(
+    private _service:DataNetService,
+    private router :Router) { }
+  click(){
+    const invitation = {
+      idconferency :  this.codigoConferency,
+      idpersonal :  this.codigoPersonal
+    }
+    this._service.postconfirmInvitation(invitation)
+      .subscribe(data=>{
+        alert('Se ha confirmado tu asistencia')
+        this.router.navigate([`/conference`])
+        this.codigoConferency = ''
+        this.codigoConferency = ''
+      })
+  }
 
   ngOnInit(): void {
   }

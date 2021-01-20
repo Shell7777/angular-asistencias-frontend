@@ -1,1 +1,15 @@
-<p>invitacion works!</p>
+<h1>Confirmar tu asistencia</h1>
+<div class="container">
+    <div>
+        <label>Código de Conferencia</label>
+        <input type="text" class="form-control" [(ngModel)]="codigoConferency">
+        
+    </div>
+    <br>
+    <div>
+        <label>Código de personal</label>
+        <input type="text" class="form-control" [(ngModel)]="codigoPersonal">
+    </div>
+    <br>
+    <button (click)='click()' class="btn btn-primary">Enviar </button>
+</div>

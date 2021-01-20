@@ -15,7 +15,7 @@ export class ConferenceEditComponent implements OnInit {
     Invitation : []
   }
   
-  personAsist 
+  personAsist :any =[]
   countpersonAsist 
   personNotAsist 
   persons 
@@ -30,18 +30,22 @@ export class ConferenceEditComponent implements OnInit {
     
   }
   getPeronsAsistieron(idConference){
-    this._service.getConferenceAsistidos(idConference)
-      .subscribe(data =>{ 
-        console.log(data);
-        this.countpersonAsist = data})
+    this._service.getInvitados(idConference).subscribe((data:any)=>{
+      this.personAsist = data
+      //console.log(data);
+    }) 
   }
   getConference(id){
     this._service.getConference(id).subscribe((data:any)=>{
       this.conference = data
-      this.personAsist = data.Invitation
-      console.log(this.personAsist);
-      
-      console.log(data)});
+     // this.personAsist = data.Invitation
+      console.log( data.Invitation);
+      });
+    
+     this._service.getInvitados(id).subscribe((data:any)=>{
+       this.personAsist = data
+       //console.log(data);
+     }) 
 
   }
  async getPersonal(){
@@ -69,6 +73,7 @@ export class ConferenceEditComponent implements OnInit {
     this._service.postInvitation(invitacion)
         .subscribe(data=>{
           this.personNotAsist.splice(index,1)  
+         this.getConference(this.conferenceID)
         })
     
   }

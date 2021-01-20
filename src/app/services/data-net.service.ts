@@ -59,4 +59,10 @@ export class DataNetService {
   postInvitation(invitation){
     return this._service.post('https://localhost:44395/api/invitation/',invitation)
   }
+  getInvitados(id){
+    return this._service.get(`https://localhost:44395/api/invitation/getInvitados/${id}`)
+  }
+  postconfirmInvitation(invitation){
+    return this._service.post(`https://localhost:44395/api/invitation/getInvitados/`,invitation)
+  }
 }

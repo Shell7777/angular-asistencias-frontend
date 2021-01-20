@@ -18,7 +18,7 @@ import { PonenteEditComponent } from './pages/ponente-edit/ponente-edit.componen
 import { PorsonEditComponent } from './pages/porson-edit/porson-edit.component'
 import {ReactiveFormsModule } from '@angular/forms';
 import { ConferenceEditComponent } from './pages/conference-edit/conference-edit.component'
-
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { ConferenceEditComponent } from './pages/conference-edit/conference-edit
     NgbModule,
     NgBootstrapModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
