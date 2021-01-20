@@ -1,0 +1,70 @@
+<br>
+<button type="button" (click)="opensave(content)"  class="btn btn-primary btn-sm">Agregar</button>
+<hr>
+<table class="table ">
+    <thead>
+        <tr class="table-primary">
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Lugar</th>
+            <th>Aforo</th>
+            <th>Personas Invitadas</th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let conference of conferences; let i = index'>
+            <td>{{i+1}}</td>
+           <td> {{conference.name}} </td>
+           <td> {{conference.lugar}} </td>
+           <td> {{conference.aforo}} </td>
+           <td> {{conference.Invitation.length}} </td>
+            <td><a  (click)="opendetailsid(conference.id)">Details</a></td>
+       </tr>
+    </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Crear una conferencia</h4>
+    </div>
+    <div class="modal-body">
+        <span  style="color:red">*nota: uso hour_end y hour_start como entero por temas de poco tiempo</span><br>
+        <form [formGroup]='form' (ngSubmit)="closenew(form.value)">
+          <p>
+              Nombre<br>
+              <input type="text"  formControlName='name'  class="form-control" placeholder="Ingrese su nombre" >
+          </p>  
+          <p>
+              Fecha<br>
+              <input type="date"  formControlName="fecha" class="form-control" placeholder="Ingrese su apellido" >
+          </p>  
+          <p>
+              Aforo<br>
+              <input type="text" formControlName="aforo" class="form-control"  placeholder="Ingrese su username" >
+          </p>  
+          <p>
+              Hora de Inicio<br>
+              <input type="text" formControlName="hour_start" class="form-control"  placeholder="Ingrese su username" >
+          </p>  
+          <p>
+              Hora de Fin<br>
+              <input type="text" formControlName="hour_end" class="form-control"  placeholder="Ingrese su username" >
+          </p>  
+          <p>
+              Description<br>
+              <input type="text" formControlName="description" class="form-control"  placeholder="Ingrese su username" >
+          </p>  
+          <p>
+              Lugar<br>
+              <input type="text" formControlName="lugar" class="form-control"  placeholder="Ingrese su username" >
+          </p>  
+      
+          <button type="submit" class="btn btn-outline-dark" >Save</button>
+          
+        </form>   
+      </div>
+    
+</ng-template>

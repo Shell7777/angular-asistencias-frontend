@@ -1,0 +1,103 @@
+<br>
+<br>
+<br>
+
+<div class="card shadow p-3 mb-5 bg-white rounded">
+    <h5 class="card-header"><h1>{{conference.name}}</h1></h5>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text"><b>Aforo:</b>{{conference.aforo}}</p>
+      <p class="card-text"><b>fecha:</b>{{conference.fecha}}</p>
+      <p class="card-text"><b>HORA</b>de {{conference.hour_start}} a {{conference.hour_end}}  </p>
+      <p class="card-text"><b>Description:</b>{{conference.description}}</p>
+      <p class="card-text"><b>Asistieron:</b>{{countpersonAsist}}/{{conference.Invitation.length}} </p>
+      <span style="color: red;"> *de n personas invitadas  Asistieron n personas</span><br><br>
+      <p class="card-text"><b>Lugar</b>{{conference.lugar}}</p>
+
+      <button routerLink='/conference' class="btn mr-1 btn-danger ">Atras</button>
+      <button  (click)="opensaveEdit(contentedit)" class="btn mr-1 btn-primary ">Editar</button>
+      <button  class="btn mr-1 btn-warning">Agregar Ponentes</button>
+      <button  (click)="openAddPerson(contetAddPerson)" class="btn  btn-success">Invitar a personas</button>
+      <br>
+      <br>
+      <br>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Personas Invitdas</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of personAsist">
+                  <td>{{item.Personal.nombre}}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+
+    <ng-template #contentedit let-modal>
+        <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear una conferencia</h4>
+        </div>
+        <div class="modal-body">
+            <span  style="color:red">*nota: uso hour_end y hour_start como entero por temas de poco tiempo</span><br>
+            <form [formGroup]='form' (ngSubmit)="closenew(form.value)">
+            <p>
+                Nombre<br>
+                <input type="text"  formControlName='name'  class="form-control" placeholder="Ingrese su nombre" >
+            </p>  
+            <p>
+                Fecha<br>
+                <input type="date"  formControlName="fecha" class="form-control" placeholder="Ingrese su apellido" >
+            </p>  
+            <p>
+                Aforo<br>
+                <input type="text" formControlName="aforo" class="form-control"  placeholder="Ingrese su username" >
+            </p>  
+            <p>
+                Hora de Inicio<br>
+                <input type="text" formControlName="hour_start" class="form-control"  placeholder="Ingrese su username" >
+            </p>  
+            <p>
+                Hora de Fin<br>
+                <input type="text" formControlName="hour_end" class="form-control"  placeholder="Ingrese su username" >
+            </p>  
+            <p>
+                Description<br>
+                <input type="text" formControlName="description" class="form-control"  placeholder="Ingrese su username" >
+            </p>  
+            <p>
+                Lugar<br>
+                <input type="text" formControlName="lugar" class="form-control"  placeholder="Ingrese su username" >
+            </p>  
+        
+            <button type="submit" class="btn btn-outline-dark" >Save</button>
+            
+            </form>   
+        </div>
+        
+    </ng-template>
+    <ng-template #contetAddPerson let-modal>
+        <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear una conferencia</h4>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Personal</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let person of personNotAsist;let i = index'>
+                        <td>{{i+1}}</td>
+                        <td>{{person.nombre}}</td>
+                        <td><button (click)="invitedPerson(person.id,i)" class="btn btn-primary">Agregar </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </ng-template>

@@ -1,0 +1,64 @@
+<br>
+<button type="button"  (click)="opennew(content2)" class="btn btn-primary btn-sm">Agregar</button>
+<hr>
+<table class="table ">
+    <thead>
+        <tr class="table-primary">
+            <th>#</th>
+            <th>Nombre</th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let ponente of ponentes; let i = index'>
+            <td>{{i+1}}</td>
+           <td> {{ponente.nombre}} </td>
+           <td><a  (click)="open(content,ponente)">Detalles</a></td>
+       </tr>
+    </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Detalles</h4>
+      <span  style="color:red">*nota: uso edad como entero por temas de tiempo</span>
+    </div>
+    <div class="modal-body">
+      <h3>{{ponente_template.nombre}}</h3>
+      Descripcion:<br>
+      <p>
+        {{ponente_template.descripcion}}
+      </p>
+      <button type="button" (click)="close()" class="btn btn-outline-dark" >Close</button>
+    </div>
+    
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <span  style="color:red">*nota: uso edad como entero por temas de tiempo</span>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]='form' (ngSubmit)="closenew(form.value)">
+        <p>
+            Nombre<br>
+            <input type="text"  formControlName='nombre'  class="form-control" placeholder="Ingrese su nombre" >
+        </p>  
+        <p>
+            Descripcion<br>
+            <input type="text"  formControlName="descripcion" class="form-control" placeholder="Ingrese una descripcion" >
+        </p>  
+       
+        <button type="submit" class="btn btn-outline-dark" >Save</button>
+        
+      </form>   
+    </div>
+    
+</ng-template>
+<hr>
+  
+
+

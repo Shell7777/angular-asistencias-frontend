@@ -1,0 +1,104 @@
+<br>
+<button type="button"  (click)="opennew(content2)" class="btn btn-primary btn-sm">Agregar</button>
+<hr>
+<table class="table ">
+    <thead>
+        <tr class="table-primary">
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Username</th>
+            <th>Genero</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let person of persons; let i = index'>
+            <td>{{i+1}}</td>
+           <td> {{person.nombre}} </td>
+           <td> {{person.apellido}} </td>
+           <td> {{person.edad}} </td>
+           <td> {{person.username}} </td>
+           <td> {{person.genero}} </td>
+           <td><a  (click)="open(content,person)">Editar</a></td>
+       </tr>
+    </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <span  style="color:red">*nota: uso edad como entero por temas de tiempo</span>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]='form' (ngSubmit)="close(form.value)">
+        <p>
+            Nombre<br>
+            <input type="text"  formControlName='nombre'  class="form-control" placeholder="Ingrese su nombre" >
+        </p>  
+        <p>
+            Apellido<br>
+            <input type="text"  formControlName="apellido" class="form-control" placeholder="Ingrese su apellido" >
+        </p>  
+        <p>
+            Username<br>
+            <input type="text" formControlName="username" class="form-control"  placeholder="Ingrese su username" >
+        </p>  
+        <p>
+            Genero<br>
+            <input type="radio" [value]="" formControlName="genero"  value="M"  placeholder="Ingrese su Genero" >Masculino<br>
+            <input type="radio" [value]="" formControlName="genero"  value="F"  placeholder="Ingrese su Genero" >Femenino
+        </p>  
+        <p>
+            Edad <br>
+            <input type="text" formControlName="edad" class="form-control" placeholder="Ingrese su edad" >
+        </p>  
+    
+        <button type="submit" class="btn btn-outline-dark" >Save</button>
+        
+      </form>   
+    </div>
+    
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <span  style="color:red">*nota: uso edad como entero por temas de tiempo</span>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]='form' (ngSubmit)="closenew(form.value)">
+        <p>
+            Nombre<br>
+            <input type="text"  formControlName='nombre'  class="form-control" placeholder="Ingrese su nombre" >
+        </p>  
+        <p>
+            Apellido<br>
+            <input type="text"  formControlName="apellido" class="form-control" placeholder="Ingrese su apellido" >
+        </p>  
+        <p>
+            Username<br>
+            <input type="text" formControlName="username" class="form-control"  placeholder="Ingrese su username" >
+        </p>  
+        <p>
+            Genero<br>
+            <input type="radio" [value]="" formControlName="genero"  value="M"  placeholder="Ingrese su Genero" >Masculino<br>
+            <input type="radio" [value]="" formControlName="genero"  value="F"  placeholder="Ingrese su Genero" >Femenino
+        </p>  
+        <p>
+            Edad <br>
+            <input type="text" formControlName="edad" class="form-control" placeholder="Ingrese su edad" >
+        </p>  
+    
+        <button type="submit" class="btn btn-outline-dark" >Save</button>
+        
+      </form>   
+    </div>
+    
+</ng-template>
+<hr>
+  
+
+
