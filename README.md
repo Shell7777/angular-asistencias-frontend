@@ -8,3 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Video
 [My Video](https://drive.google.com/file/d/1JLAJhvqy4bf-P40Ws3A2Yxra1-vj8zNR/view) 
+
+
+## Author
+### Elvis  Tirado
